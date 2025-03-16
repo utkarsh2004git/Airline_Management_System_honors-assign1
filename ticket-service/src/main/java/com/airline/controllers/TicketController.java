@@ -16,7 +16,7 @@ public class TicketController {
     private TicketService ticketService;
 
     @GetMapping
-    List<TicketInfoDTO> getAllTickets(){
+    List<Object> getAllTickets(){
           return ticketService.getAllTickets();
     }
 
@@ -28,7 +28,7 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<TicketInfoDTO>  getOrderById(@PathVariable String id){
+    ResponseEntity<Object>  getOrderById(@PathVariable String id){
 
         try{
 
