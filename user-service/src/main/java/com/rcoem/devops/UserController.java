@@ -36,16 +36,15 @@ public class UserController {
         }
     }
 
-//    @PutMapping("/{id}/{ticketId}")
-//    ResponseEntity<String> updateUser(@PathVariable String id, @PathVariable String ticketId){
-//
-//
-//        try{
-//            userService.updateUserTicketList(id, ticketId);
-//            return ResponseEntity.ok("User ticket Added");
-//        }catch(Exception e){
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/{id}/{ticketId}")
+    ResponseEntity<String> updateUser(@PathVariable String id, @PathVariable String ticketId){
+        System.out.println(ticketId);
+        try{
+            userService.updateUserTicketList(id, ticketId);
+            return ResponseEntity.ok("User ticket Added");
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }

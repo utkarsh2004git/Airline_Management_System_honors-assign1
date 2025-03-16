@@ -1,6 +1,7 @@
 package com.airline.repository;
 
 import com.airline.dto.TicketInfoDTO;
+import com.airline.dto.UserInfo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -37,6 +38,8 @@ public class TicketRepository {
         String ticketId = UUID.randomUUID().toString();
         TicketInfoDTO updatedTicket = ticketInfo.toBuilder().ticketId(ticketId).build();
         this.ticketInfoTable.put(ticketId, updatedTicket );
+
+
 
         return updatedTicket;
     }

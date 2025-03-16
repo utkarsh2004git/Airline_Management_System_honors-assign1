@@ -31,8 +31,8 @@ public class UserService {
         return userInfo;
     }
 
-//    public void updateUserTicketList(String userId, String ticketId) {
-//
-//        userInfoRepository.updateUserTicketList(userId,ticketId);
-//    }
+    public void updateUserTicketList(String userId, String ticketId) {
+
+        userInfoRepository.updateUserTicketList(userId,ticketId);
+    }
 }

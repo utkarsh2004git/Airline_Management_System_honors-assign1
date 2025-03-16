@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
-    
+
     @Autowired
     private TicketService ticketService;
 
@@ -22,7 +22,7 @@ public class TicketController {
 
 
     @PostMapping
-    TicketInfoDTO createTicket(@RequestBody TicketInfoDTO ticketInfo){
+    Object createTicket(@RequestBody TicketInfoDTO ticketInfo){
 
         return ticketService.createTicket(ticketInfo);
     }
