@@ -1,6 +1,5 @@
 package com.airline.controllers;
 import com.airline.dto.TicketInfoDTO;
-import com.airline.services.OrderService;
 import com.airline.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
-
-    @Autowired
-    OrderService orderService;
+    
     @Autowired
     private TicketService ticketService;
 
