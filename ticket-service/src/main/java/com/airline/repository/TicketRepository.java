@@ -38,9 +38,6 @@ public class TicketRepository {
         String ticketId = UUID.randomUUID().toString();
         TicketInfoDTO updatedTicket = ticketInfo.toBuilder().ticketId(ticketId).build();
         this.ticketInfoTable.put(ticketId, updatedTicket );
-
-
-
         return updatedTicket;
     }
 
