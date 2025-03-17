@@ -2,6 +2,7 @@ package com.airline.controllers;
 import com.airline.dto.TicketInfoDTO;
 import com.airline.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +38,20 @@ public class TicketController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/{ticketId}")
+    public ResponseEntity<String> deleteTicket(
+            @PathVariable String ticketId) {
+
+        boolean deleted = ticketService.deleteTicket(ticketId);
+
+        if (deleted) {
+            return ResponseEntity.ok("Ticket deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete ticket.");
+        }
+    }
+
+
 
 }

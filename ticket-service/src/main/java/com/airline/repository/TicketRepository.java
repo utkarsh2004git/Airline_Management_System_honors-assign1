@@ -46,4 +46,15 @@ public class TicketRepository {
         return ticketInfoTable.get(ticketId);
     }
 
+
+    public boolean deleteTicket(String ticketId){
+        if(this.ticketInfoTable.containsKey(ticketId)){
+            this.ticketInfoTable.remove(ticketId);
+            return true;
+        }
+        return false;
+    }
+
+
+
 }

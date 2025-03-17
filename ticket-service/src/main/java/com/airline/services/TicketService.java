@@ -64,4 +64,29 @@ public class TicketService {
         return ticketInfo.toResponse(userInfo,flightInfo);
     }
 
+    public boolean deleteTicket(String ticketId){
+
+        TicketInfoDTO ticketInfo = ticketRepository.getTicketById(ticketId);
+        if(ticketInfo == null){
+            return false;
+        }
+        String userId = ticketInfo.getUserId();
+
+        String getUserurl ="http://localhost:5000/user-mgmt/users/"+userId;
+        UserInfo userInfo = restTemplate.getForObject(getUserurl, UserInfo.class);
+
+        if(userInfo == null){
+            return false;
+        }
+
+        boolean deleted = ticketRepository.deleteTicket(ticketId);
+
+        if(deleted){
+            String deleteUserTicketUrl ="http://localhost:5000/user-mgmt/users/"+userId+"/"+ticketId;
+            restTemplate.delete(deleteUserTicketUrl);
+            return true;
+        }
+        return deleted;
+    }
+
 }

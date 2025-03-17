@@ -35,4 +35,9 @@ public class UserService {
 
         userInfoRepository.updateUserTicketList(userId,ticketId);
     }
+
+    public void deleteUserTicket(String userId, String ticketId) {
+
+        userInfoRepository.deleteUserTicket(userId,ticketId);
+    }
 }

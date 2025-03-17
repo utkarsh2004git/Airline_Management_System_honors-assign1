@@ -38,9 +38,21 @@ public class UserController {
 
     @PutMapping("/{id}/{ticketId}")
     ResponseEntity<String> updateUser(@PathVariable String id, @PathVariable String ticketId){
-        System.out.println(ticketId);
+//        System.out.println(ticketId);
         try{
             userService.updateUserTicketList(id, ticketId);
+            return ResponseEntity.ok("User ticket Added");
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @DeleteMapping("/{id}/{ticketId}")
+    ResponseEntity<String> deleteUserTicket(@PathVariable String id, @PathVariable String ticketId){
+//        System.out.println(ticketId);
+        try{
+            userService.deleteUserTicket(id, ticketId);
             return ResponseEntity.ok("User ticket Added");
         }catch(Exception e){
             return ResponseEntity.notFound().build();

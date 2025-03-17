@@ -70,5 +70,23 @@ public class UserInfoRepository {
         }
     }
 
+    public void  deleteUserTicket(String userId, String ticketId) {
+        UserInfo userInfo = userInfoTable.get(userId);
+        if (userInfo != null) {
+            // Ensure ticket list is initialized
+            if (userInfo.getBookedTicketIds() == null) {
+                userInfo.setBookedTicketIds(new ArrayList<>());
+            }
+
+            // Add ticketId if it's not already in the list
+            if (userInfo.getBookedTicketIds().contains(ticketId)) {
+                userInfo.getBookedTicketIds().remove(ticketId);
+            }
+
+            // Put the updated user info back into the map
+            userInfoTable.put(userId, userInfo);
+        }
+    }
+
 
 }
