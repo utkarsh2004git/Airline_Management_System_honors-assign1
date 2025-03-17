@@ -31,7 +31,7 @@ public class TicketService {
         TicketInfoDTO createdTicketInfo =  ticketRepository.createTicket(ticketInfo);
 
         //update user-ticket-list
-        String url = "http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId()+"/"+createdTicketInfo.getTicketId();
+        String url = "http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId()+"/tickets/"+createdTicketInfo.getTicketId();
         restTemplate.put(url, null);
 
         //get userInfo
@@ -82,7 +82,7 @@ public class TicketService {
         boolean deleted = ticketRepository.deleteTicket(ticketId);
 
         if(deleted){
-            String deleteUserTicketUrl ="http://localhost:5000/user-mgmt/users/"+userId+"/"+ticketId;
+            String deleteUserTicketUrl ="http://localhost:5000/user-mgmt/users/"+userId+"/tickets/"+ticketId;
             restTemplate.delete(deleteUserTicketUrl);
             return true;
         }

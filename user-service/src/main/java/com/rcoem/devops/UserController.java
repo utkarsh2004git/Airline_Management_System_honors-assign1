@@ -36,7 +36,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}/{ticketId}")
+    @PutMapping("/{id}/tickets/{ticketId}")
     ResponseEntity<String> updateUser(@PathVariable String id, @PathVariable String ticketId){
 //        System.out.println(ticketId);
         try{
@@ -48,7 +48,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/{id}/{ticketId}")
+    @DeleteMapping("/{id}/tickets/{ticketId}")
     ResponseEntity<String> deleteUserTicket(@PathVariable String id, @PathVariable String ticketId){
 //        System.out.println(ticketId);
         try{
