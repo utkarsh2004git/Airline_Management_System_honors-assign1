@@ -10,12 +10,28 @@ import java.util.stream.Collectors;
 @Component
 public class UserInfoRepository {
 
-    Map<String, UserInfo> userInfoTable;
+    HashMap<String, UserInfo> userInfoTable;
+
+    HashMap<String,UserInfo> demoUsers(HashMap<String,UserInfo> userInfoTable) {
+
+        UserInfo userInfo = UserInfo.builder()
+                .id("abc123")
+                .name("Utkarsh")
+                .email("Utkarsh@gmail.com")
+                .address("Nagpur")
+                .phone("123456789")
+                .bookedTicketIds(new ArrayList<>())
+                .build();
+        userInfoTable.put("abc123", userInfo);
+
+        return userInfoTable;
+    }
 
 
     @PostConstruct
     public void init() {
         userInfoTable = new HashMap<>();
+        userInfoTable = demoUsers(userInfoTable);
     }
 
 

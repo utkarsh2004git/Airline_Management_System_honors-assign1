@@ -31,9 +31,8 @@ public class TicketService {
         TicketInfoDTO createdTicketInfo =  ticketRepository.createTicket(ticketInfo);
 
         //update user-ticket-list
-        String url = "http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId()+"/"+createdTicketInfo.getTicketId() ;
+        String url = "http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId()+"/"+createdTicketInfo.getTicketId();
         restTemplate.put(url, null);
-
 
         //get userInfo
         String getUserurl ="http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId();
