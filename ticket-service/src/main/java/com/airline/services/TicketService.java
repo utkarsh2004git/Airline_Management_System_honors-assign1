@@ -9,6 +9,7 @@ import com.airline.repository.TicketRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +24,12 @@ public class TicketService {
     private RestTemplate restTemplate;
 
 
+    @Value("${user.service.url}")
+    private String userServiceUrl;
+
+    @Value("${flight.service.url}")
+    private String flightServiceUrl;
+
     public List<TicketInfoDTO> getAllTickets(){
         return ticketRepository.getAllTickets();
     }
@@ -31,15 +38,15 @@ public class TicketService {
         TicketInfoDTO createdTicketInfo =  ticketRepository.createTicket(ticketInfo);
 
         //update user-ticket-list
-        String url = "http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId()+"/tickets/"+createdTicketInfo.getTicketId();
+        String url = userServiceUrl+"/user-mgmt/users/"+ticketInfo.getUserId()+"/tickets/"+createdTicketInfo.getTicketId();
         restTemplate.put(url, null);
 
         //get userInfo
-        String getUserurl ="http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId();
+        String getUserurl =userServiceUrl+"/user-mgmt/users/"+ticketInfo.getUserId();
         UserInfo userInfo = restTemplate.getForObject(getUserurl, UserInfo.class);
 
         //get flightInfo
-        String getFlighturl ="http://localhost:5001/flight-mgmt/flights/"+ticketInfo.getFlightId();
+        String getFlighturl =flightServiceUrl+"/flight-mgmt/flights/"+ticketInfo.getFlightId();
         FlightInfoDTO flightInfo = restTemplate.getForObject(getFlighturl, FlightInfoDTO.class);
 
 
@@ -54,11 +61,11 @@ public class TicketService {
         }
 
         //get userInfo
-        String getUserurl ="http://localhost:5000/user-mgmt/users/"+ticketInfo.getUserId();
+        String getUserurl =userServiceUrl+"/user-mgmt/users/"+ticketInfo.getUserId();
         UserInfo userInfo = restTemplate.getForObject(getUserurl, UserInfo.class);
 
         //get flightInfo
-        String getFlighturl ="http://localhost:5001/flight-mgmt/flights/"+ticketInfo.getFlightId();
+        String getFlighturl =flightServiceUrl+"/flight-mgmt/flights/"+ticketInfo.getFlightId();
         FlightInfoDTO flightInfo = restTemplate.getForObject(getFlighturl, FlightInfoDTO.class);
 
         return ticketInfo.toResponse(userInfo,flightInfo);
@@ -72,7 +79,7 @@ public class TicketService {
         }
         String userId = ticketInfo.getUserId();
 
-        String getUserurl ="http://localhost:5000/user-mgmt/users/"+userId;
+        String getUserurl =userServiceUrl+"/user-mgmt/users/"+userId;
         UserInfo userInfo = restTemplate.getForObject(getUserurl, UserInfo.class);
 
         if(userInfo == null){
@@ -82,7 +89,7 @@ public class TicketService {
         boolean deleted = ticketRepository.deleteTicket(ticketId);
 
         if(deleted){
-            String deleteUserTicketUrl ="http://localhost:5000/user-mgmt/users/"+userId+"/tickets/"+ticketId;
+            String deleteUserTicketUrl =userServiceUrl+"/user-mgmt/users/"+userId+"/tickets/"+ticketId;
             restTemplate.delete(deleteUserTicketUrl);
             return true;
         }
