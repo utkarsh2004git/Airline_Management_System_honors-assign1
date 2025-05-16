@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rcoem</groupId>
-	<artifactId>devops</artifactId>
+	<artifactId>ticket-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>devops</name>
+	<name>ticket-service</name>
 	<description>User management system</description>
 	<url/>
 	<licenses>
