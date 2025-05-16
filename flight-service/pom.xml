@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rcoem</groupId>
-	<artifactId>devops</artifactId>
+	<artifactId>flight-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>devops</name>
+	<name>flight-service</name>
 	<description>User management system</description>
 	<url/>
 	<licenses>
